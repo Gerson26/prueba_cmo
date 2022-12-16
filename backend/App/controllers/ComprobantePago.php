@@ -890,7 +890,7 @@ html;
 
             //transformacion de .key a .pem
             exec("openssl pkcs8 -inform DER -in config_facturacion/archivos/CSD_Matriz_AMN7702037S3_20220131_201408.key -passin pass:Neur@2022 > config_facturacion/pem/AMN7702037S3_20220131_201408.pem");
-            exit;
+            // exit;
             exec("openssl dgst -SHA256 -sign config_facturacion/pem/AMN7702037S3_20220131_201408.pem -out $sellobintxt $archivocotxt");
             exec("openssl enc -base64 -in $sellobintxt -out $sellotxt");
             //Borramos el archivo .pem y el sellobintxt
