@@ -894,8 +894,8 @@ html;
             exec("openssl dgst -SHA256 -sign config_facturacion/pem/AMN7702037S3_20220131_201408.pem -out $sellobintxt $archivocotxt");
             exec("openssl enc -base64 -in $sellobintxt -out $sellotxt");
             //Borramos el archivo .pem y el sellobintxt
-            // unlink("config_facturacion/pem/AMN7702037S3_20220131_201408.pem");
-            // unlink($sellobintxt);
+            unlink("config_facturacion/pem/AMN7702037S3_20220131_201408.pem");
+            unlink($sellobintxt);
             //Asignamos la cadena original y el sello
             $cadenaoriginalread = fopen($archivocotxt, "r");
             $cadenaoriginal = fread($cadenaoriginalread, filesize($archivocotxt));
@@ -907,7 +907,7 @@ html;
             
    
             $xml = simplexml_load_file($destino_final);
-            $xml->addAttribute('Sello', $sello);
+        $xml->addAttribute('Sello', $sello);
             //echo $xml->asXML();  
             //exit();
             $xmllee = fopen($destino_final, "w");
@@ -1000,7 +1000,7 @@ html;
                             'noCertificadoSAT' => str_replace("/", "λλ", $noCertificadoSAT),
                             'selloSAT' => str_replace("/", "λλ", $selloSAT)
                         ];
-                        return $respuesta;
+                        echo json_encode($respuesta);
                         //return $idSocio."||".$idCompra."||".$datos."||".$uuid."||".$FechaTimbrado."||".$selloCFD."||".$noCertificadoSAT."||".$selloSAT;
                         //$this->generarPdfFacturacion_3_3($idSocio,$idCompra,$datos,$uuid,$FechaTimbrado,$selloCFD,$noCertificadoSAT,$selloSAT);//Invocamos el método para crear el PDF
                     } else {
